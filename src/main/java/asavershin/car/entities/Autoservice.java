@@ -11,6 +11,44 @@ public class Autoservice {
     private String name;
     private String address;
     private String country;
-//    private List<Car> cars = new ArrayList<>();
 
+    public static class Builder {
+        private Long id;
+        private String name;
+        private String address;
+        private String country;
+
+        public Builder() {
+            // Установите значения по умолчанию, если необходимо
+        }
+
+        public Builder setId(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder setAddress(String address) {
+            this.address = address;
+            return this;
+        }
+
+        public Builder setCountry(String country) {
+            this.country = country;
+            return this;
+        }
+
+        public Autoservice build() {
+            var autoservice = new Autoservice();
+            autoservice.id = this.id;
+            autoservice.name = this.name;
+            autoservice.address = this.address;
+            autoservice.country = this.country;
+            return autoservice;
+        }
+    }
 }

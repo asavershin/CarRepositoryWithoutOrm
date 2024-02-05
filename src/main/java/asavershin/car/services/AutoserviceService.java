@@ -10,7 +10,7 @@ public class AutoserviceService {
     private final AutoserviceRepository autoserviceRepository;
 
     public Autoservice createAutoservice(Autoservice autoservice){
-        return autoserviceRepository.save(autoservice);
+        return autoserviceRepository.insert(autoservice);
     }
 
 //    public Autoservice getAutoservice(Long autoserviceId) {

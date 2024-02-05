@@ -3,16 +3,17 @@ package asavershin.car.repositories;
 import org.jooq.Condition;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CrudRepository<T> {
 
     Integer SUCCESS_CODE = 1;
 
-    T save(T t);
+    T insert(T t);
 
     T update(T t);
 
-    T findById(Long id);
+    Optional<T> findById(Long id);
 
     List<T> findAll(Condition condition);
 
