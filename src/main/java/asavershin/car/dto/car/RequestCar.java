@@ -14,15 +14,15 @@ public class RequestCar {
 
     @Size(max = 100, message = "Слишком длинная дата")
     @JsonAlias({"createdAt", "created_at"})
-    private String releaseDate;
+    private String carReleaseDate;
 
     @NotBlank(message = "Не заполнен цвет")
     @Size(max = 20,message = "Слишком длинное название цвета")
-    private String color;
+    private String carColor;
 
     @CorrectModel
-    private String model;
+    private String carModel;
 
     @NotNull
-    private Long evp;
+    private Long carEvp;
 }

@@ -2,6 +2,7 @@ package asavershin.car.controllers;
 
 import asavershin.car.dto.autoservice.RequestAutoservice;
 import asavershin.car.dto.autoservice.ResponseAutoservice;
+import asavershin.car.handlers.localexceptions.EntityNotFoundException;
 import asavershin.car.mappers.AutoserviceMapper;
 import asavershin.car.services.AutoserviceService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -38,44 +39,43 @@ public class AutoserviceController {
                         .createAutoservice(autoserviceMapper.requestAutoserviceToAutoservice(request)));
     }
 
-//    @GetMapping("/{autoserviceId}")
-//    @ApiResponses(value = {
-//            @ApiResponse(responseCode = "200", description = "Ok", content = {
-//                    @Content(mediaType = "application/json",
-//                            schema = @Schema(implementation = ResponseAutoservice.class))}),
-//            @ApiResponse(responseCode = "404", description = "Салон с id autoserviceId не найден", content = {})
-//    })
-//    @Operation(description = "Получение салона")
-//    public ResponseAutoservice getAutoservice(@PathVariable Long autoserviceId){
-//        return autoserviceMapper
-//                .autoserviceToResponseAutoservice(autoserviceService.getAutoservice(autoserviceId));
-//    }
-//
-//    @PutMapping("/{autoserviceId}")
-//    @ApiResponses(value = {
-//            @ApiResponse(responseCode = "200", description = "Ok", content = {
-//                    @Content(mediaType = "application/json",
-//                            schema = @Schema(implementation = ResponseAutoservice.class))}),
-//            @ApiResponse(responseCode = "400", description = "Ошибка валидации", content = {}),
-//            @ApiResponse(responseCode = "404", description = "Салон с id autoserviceId не найден", content = {})
-//    })
-//    @Operation(description = "Обновление салона")
-//    public ResponseAutoservice updateAutoservice(@PathVariable Long autoserviceId,
-//                                                 @Valid @RequestBody RequestAutoservice request){
-//        return autoserviceMapper
-//                .autoserviceToResponseAutoservice(autoserviceService
-//                        .updateAutoservice(autoserviceId, request.getName(),
-//                request.getAddress(), request.getCountry()));
-//    }
-//
-//    @DeleteMapping("/{autoserviceId}")
-//    @ApiResponses(value = {
-//            @ApiResponse(responseCode = "200", content = {}),
-//            @ApiResponse(responseCode = "404", description = "Салон с id autoserviceId не найден", content = {})
-//    })
-//    @Operation(description = "Удаление салона")
-//    public void deleteAutoservice(@PathVariable Long autoserviceId){
-//        autoserviceService.deleteAutoservice(autoserviceId);
-//    }
+    @GetMapping("/{autoserviceId}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Ok", content = {
+                    @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ResponseAutoservice.class))}),
+            @ApiResponse(responseCode = "404", description = "Салон с id autoserviceId не найден", content = {})
+    })
+    @Operation(description = "Получение салона")
+    public ResponseAutoservice getAutoservice(@PathVariable Long autoserviceId) throws EntityNotFoundException {
+        return autoserviceMapper
+                .autoserviceToResponseAutoservice(autoserviceService.getAutoservice(autoserviceId));
+    }
+
+    @PutMapping("/{autoserviceId}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Ok", content = {
+                    @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ResponseAutoservice.class))}),
+            @ApiResponse(responseCode = "400", description = "Ошибка валидации", content = {}),
+            @ApiResponse(responseCode = "404", description = "Салон с id autoserviceId не найден", content = {})
+    })
+    @Operation(description = "Обновление салона")
+    public ResponseAutoservice updateAutoservice(@PathVariable Long autoserviceId,
+                                                 @Valid @RequestBody RequestAutoservice request) throws EntityNotFoundException {
+        return autoserviceMapper
+                .autoserviceToResponseAutoservice(autoserviceService
+                        .updateAutoservice(autoserviceMapper.requestAutoserviceToAutoservice(autoserviceId, request)));
+    }
+
+    @DeleteMapping("/{autoserviceId}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", content = {}),
+            @ApiResponse(responseCode = "404", description = "Салон с id autoserviceId не найден", content = {})
+    })
+    @Operation(description = "Удаление салона")
+    public void deleteAutoservice(@PathVariable Long autoserviceId){
+        autoserviceService.deleteAutoservice(autoserviceId);
+    }
 
 }

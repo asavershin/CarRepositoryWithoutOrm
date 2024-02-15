@@ -7,15 +7,15 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class ResponseCarWithoutOwner {
-    private Long id;
+    private Long carId;
 
-    private String releaseDate;
+    private String carReleaseDate;
 
-    private String color;
+    private String carColor;
 
-    private String model;
+    private String carModel;
 
-    private Long evp;
+    private Long carEvp;
 
-    private ResponseAutoservice autoservice;
+    private ResponseAutoservice carAutoservice;
 }

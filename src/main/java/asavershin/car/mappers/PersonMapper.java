@@ -1,39 +1,35 @@
-//package asavershin.car.mappers;
-//
-//import asavershin.car.dao.entities.Car;
-//import asavershin.car.dao.entities.Person;
-//import asavershin.car.dto.PageResponse;
-//import asavershin.car.dto.person.RequestPerson;
-//import asavershin.car.dto.person.ResponsePerson;
-//import asavershin.car.dto.person.ResponsePersonWithCars;
-//import org.mapstruct.Mapper;
-//import org.mapstruct.Mapping;
-//import org.mapstruct.Named;
-//import org.springframework.data.domain.Page;
-//
-//import java.util.List;
-//
-//@Mapper(componentModel = "spring", uses = {CarMapperWithoutOwner.class})
-//public interface PersonMapper {
-//
-//    @Mapping(target = "personName", source = "name")
-//    @Mapping(target = "personAge", source = "age")
-//    @Mapping(target = "id", source = "id")
-//    ResponsePerson personToResponsePerson(Person person);
-//
+package asavershin.car.mappers;
+
+import asavershin.car.entities.CarEntity;
+import asavershin.car.entities.PersonEntity;
+import asavershin.car.dto.person.RequestPerson;
+import asavershin.car.dto.person.ResponsePerson;
+import asavershin.car.dto.person.ResponsePersonWithCars;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Named;
+
+import java.util.List;
+
+@Mapper(componentModel = "spring", uses = {CarMapperWithoutOwner.class})
+public interface PersonMapper {
+
+
+    ResponsePerson personToResponsePerson(PersonEntity person);
+
 //    PageResponse<ResponsePersonWithCars> pageResponseWithResponsePersonWithCars(Page<Person> page);
-//    List<ResponsePersonWithCars> pageResponseWithResponsePersonWithCars(List<Person> persons);
-//
-//    @Mapping(target = "personName", source = "name")
-//    @Mapping(target = "personAge", source = "age")
-//    @Mapping(target = "id", source = "id")
-//    @Mapping(target = "carsAmount", source = "cars", qualifiedByName = "carsAmount")
-//    @Mapping(target = "cars", source = "cars")
-//    ResponsePersonWithCars personToResponsePersonWithCars(Person person);
-//
-//    Person requestPersonToPerson(RequestPerson request);
-//    @Named("carsAmount")
-//    default Integer carsAmount(List<Car> cars){
-//        return cars.size();
-//    }
-//}
+    List<ResponsePersonWithCars> pageResponseWithResponsePersonWithCars(List<PersonEntity> persons);
+
+
+
+    @Mapping(target = "carsAmount", source = "personCars", qualifiedByName = "carsAmount")
+    ResponsePersonWithCars personToResponsePersonWithCars(PersonEntity person);
+
+    PersonEntity requestPersonToPerson(RequestPerson request);
+    @Named("carsAmount")
+    default Integer carsAmount(List<CarEntity> cars){
+        return cars.size();
+    }
+
+    PersonEntity requestPersonToPerson(Long personId, RequestPerson request);
+}

@@ -11,5 +11,5 @@ import java.util.List;
 @Data
 public class RequestPersonWithCars extends RequestPerson{
     @Valid
-    List<RequestCar> cars;
+    List<@Valid RequestCar> personCars;
 }

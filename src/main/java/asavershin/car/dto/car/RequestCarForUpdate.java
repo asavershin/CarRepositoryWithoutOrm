@@ -8,11 +8,11 @@ public class RequestCarForUpdate {
 
     @NotBlank(message = "Не заполнен цвет")
     @Size(max = 20,message = "Слишком длинное название цвета")
-    private String color;
+    private String carColor;
     @Min(value = 1, message = "Id>=1")
     @NotNull(message = "Не установлен владелец")
-    private Long personId;
+    private Long carPersonId;
     @Min(value = 1, message = "Id>=1")
     @NotNull(message = "Не установлен автосервис")
-    private Long autoserviceId;
+    private Long carAutoserviceId;
 }

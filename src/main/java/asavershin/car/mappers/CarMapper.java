@@ -1,44 +1,43 @@
-//package asavershin.car.mappers;
-//
-//import asavershin.car.dao.entities.Car;
-//import asavershin.car.dao.entities.Person;
-//import asavershin.car.dto.PageResponse;
-//import asavershin.car.dto.car.RequestCar;
-//import asavershin.car.dto.car.ResponseCar;
-//import asavershin.car.dto.person.RequestPersonWithCars;
-//import asavershin.car.utility.LocalDateTimeConverting;
-//import org.mapstruct.Mapper;
-//import org.mapstruct.Mapping;
-//import org.mapstruct.Named;
-//import org.springframework.data.domain.Page;
-//
-//import java.text.ParseException;
-//import java.time.LocalDateTime;
-//
-//@Mapper(componentModel = "spring", uses = {PersonMapper.class, AutoserviceMapper.class})
-//public interface CarMapper {
-//
-//    @Mapping(target = "releaseDate", source = "releaseDate", qualifiedByName = "dateToString")
-//    @Mapping(target = "owner", source = "owner")
-//    @Mapping(target = "autoservice", source = "autoservice")
-//    ResponseCar carToResponseCar(Car car);
+package asavershin.car.mappers;
+
+import asavershin.car.dto.car.RequestCar;
+import asavershin.car.dto.person.RequestPersonWithCars;
+import asavershin.car.entities.CarEntity;
+import asavershin.car.dto.car.ResponseCar;
+import asavershin.car.entities.PersonEntity;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Named;
+
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Mapper(componentModel = "spring", uses = {PersonMapper.class, AutoserviceMapper.class})
+public interface CarMapper {
+
+    @Mapping(target = "carReleaseDate", source = "carReleaseDate", qualifiedByName = "dateToString")
+    ResponseCar carToResponseCar(CarEntity car);
 //
 //    PageResponse<ResponseCar> pageResponseWithResponseCars(Page<Car> page);
-//
-//
-//    @Mapping(target = "releaseDate", source = "releaseDate", qualifiedByName = "stringToDate")
-//    Car requestCarToCar(RequestCar requestCar);
-//
-//    Person personWithCars(RequestPersonWithCars request);
-//
-//    @Named("dateToString")
-//    default String dateToString(LocalDateTime date){
-//        return LocalDateTimeConverting.localDateTimeToString(date);
-//    }
-//
-//    @Named("stringToDate")
-//    default LocalDateTime stringToDate(String date) throws ParseException {
-//        return LocalDateTimeConverting.stringToLocalDateTime(date);
-//    }
-//
-//}
+
+    List<ResponseCar> listCarToListRC(List<CarEntity> cars);
+
+
+    @Mapping(target = "carReleaseDate", source = "carReleaseDate", qualifiedByName = "stringToDate")
+    CarEntity requestCarToCar(RequestCar requestCar);
+
+    PersonEntity personWithCars(RequestPersonWithCars request);
+
+    @Named("dateToString")
+    default String dateToString(LocalDate date){
+        return date.toString();
+    }
+
+    @Named("stringToDate")
+    default LocalDate stringToDate(String date) throws ParseException {
+        return LocalDate.parse(date);
+    }
+
+}

@@ -1,52 +1,69 @@
 package asavershin.car.mappers;
 
-import asavershin.car.dao.entities.Autoservice;
 import asavershin.car.dto.autoservice.RequestAutoservice;
 import asavershin.car.dto.autoservice.ResponseAutoservice;
+import asavershin.car.entities.AutoserviceEntity;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-02-05T12:31:29+0300",
+    date = "2024-02-15T14:59:34+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21 (Oracle Corporation)"
 )
 @Component
 public class AutoserviceMapperImpl implements AutoserviceMapper {
 
     @Override
-    public ResponseAutoservice autoserviceToResponseAutoservice(Autoservice autoservice) {
+    public ResponseAutoservice autoserviceToResponseAutoservice(AutoserviceEntity autoservice) {
         if ( autoservice == null ) {
             return null;
         }
 
-        Long id = null;
-        String name = null;
-        String address = null;
-        String country = null;
+        Long autoserviceId = null;
+        String autoserviceName = null;
+        String autoserviceAddress = null;
+        String autoserviceCountry = null;
 
-        id = autoservice.getId();
-        name = autoservice.getName();
-        address = autoservice.getAddress();
-        country = autoservice.getCountry();
+        autoserviceId = autoservice.getAutoserviceId();
+        autoserviceName = autoservice.getAutoserviceName();
+        autoserviceAddress = autoservice.getAutoserviceAddress();
+        autoserviceCountry = autoservice.getAutoserviceCountry();
 
-        ResponseAutoservice responseAutoservice = new ResponseAutoservice( id, name, address, country );
+        ResponseAutoservice responseAutoservice = new ResponseAutoservice( autoserviceId, autoserviceName, autoserviceAddress, autoserviceCountry );
 
         return responseAutoservice;
     }
 
     @Override
-    public Autoservice requestAutoserviceToAutoservice(RequestAutoservice request) {
+    public AutoserviceEntity requestAutoserviceToAutoservice(RequestAutoservice request) {
         if ( request == null ) {
             return null;
         }
 
-        Autoservice autoservice = new Autoservice();
+        AutoserviceEntity.AutoserviceEntityBuilder autoserviceEntity = AutoserviceEntity.builder();
 
-        autoservice.setName( request.getName() );
-        autoservice.setAddress( request.getAddress() );
-        autoservice.setCountry( request.getCountry() );
+        autoserviceEntity.autoserviceName( request.getAutoserviceName() );
+        autoserviceEntity.autoserviceAddress( request.getAutoserviceAddress() );
+        autoserviceEntity.autoserviceCountry( request.getAutoserviceCountry() );
 
-        return autoservice;
+        return autoserviceEntity.build();
+    }
+
+    @Override
+    public AutoserviceEntity requestAutoserviceToAutoservice(Long id, RequestAutoservice requestAutoservice) {
+        if ( id == null && requestAutoservice == null ) {
+            return null;
+        }
+
+        AutoserviceEntity.AutoserviceEntityBuilder autoserviceEntity = AutoserviceEntity.builder();
+
+        if ( requestAutoservice != null ) {
+            autoserviceEntity.autoserviceName( requestAutoservice.getAutoserviceName() );
+            autoserviceEntity.autoserviceAddress( requestAutoservice.getAutoserviceAddress() );
+            autoserviceEntity.autoserviceCountry( requestAutoservice.getAutoserviceCountry() );
+        }
+
+        return autoserviceEntity.build();
     }
 }

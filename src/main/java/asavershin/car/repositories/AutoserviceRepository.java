@@ -1,8 +1,8 @@
 package asavershin.car.repositories;
 
-import asavershin.car.dao.entities.Autoservice;
+import asavershin.car.entities.AutoserviceEntity;
 
 
-public interface AutoserviceRepository extends CrudRepository<Autoservice>{
+public interface AutoserviceRepository extends CrudRepository<AutoserviceEntity, Long>{
 
 }

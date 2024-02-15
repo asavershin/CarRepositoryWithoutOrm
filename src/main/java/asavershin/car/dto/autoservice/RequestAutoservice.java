@@ -8,11 +8,11 @@ import lombok.Getter;
 public class RequestAutoservice {
     @NotBlank(message = "У всего есть название, а у вас вдруг нет")
     @Size(max = 50, message = "Максимальная длина 50 символов")
-    private String name;
+    private String autoserviceName;
     @NotBlank(message = "Адресс необходим")
     @Size(max = 50, message = "Максимальная длина 50 символов")
-    private String address;
+    private String autoserviceAddress;
     @NotBlank(message = "У всех и вся есть Родина")
     @Size(max = 50, message = "Максимальная длина 50 символов")
-    private String country;
+    private String autoserviceCountry;
 }

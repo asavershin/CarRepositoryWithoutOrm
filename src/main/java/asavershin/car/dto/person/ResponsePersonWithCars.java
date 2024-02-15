@@ -10,9 +10,9 @@ import java.util.List;
 @Setter
 @Getter
 public class ResponsePersonWithCars {
-    private Long id;
+    private Long personId;
     private String personName;
     private Integer personAge;
     private Integer carsAmount;
-    private List<ResponseCarWithoutOwner> cars;
+    private List<ResponseCarWithoutOwner> personCars;
 }

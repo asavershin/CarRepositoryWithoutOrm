@@ -1,21 +1,21 @@
 package asavershin.car.repositories;
 
-import org.jooq.Condition;
+
+import asavershin.car.handlers.localexceptions.EntityNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface CrudRepository<T> {
+public interface CrudRepository<T, K> {
 
     Integer SUCCESS_CODE = 1;
 
     T insert(T t);
+    List<T> insertAll(List<T> listT);
 
-    T update(T t);
+    T update(T t) throws EntityNotFoundException;
 
-    Optional<T> findById(Long id);
+    Optional<T> findById(K id) throws EntityNotFoundException;
 
-    List<T> findAll(Condition condition);
-
-    Boolean delete(Long id);
+    Boolean delete(K id);
 }

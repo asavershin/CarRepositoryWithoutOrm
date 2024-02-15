@@ -6,9 +6,9 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class ResponseAutoservice {
-    private Long id;
-    private String name;
-    private String address;
-    private String country;
+    private Long autoserviceId;
+    private String autoserviceName;
+    private String autoserviceAddress;
+    private String autoserviceCountry;
 
 }

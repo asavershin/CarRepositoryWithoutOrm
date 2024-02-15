@@ -4,7 +4,7 @@
 //import asavershin.car.dao.entities.QAutoservice;
 //import asavershin.car.dao.entities.QCar;
 //import asavershin.car.dao.entities.QPerson;
-//import asavershin.car.dto.autoservice.PersonFilter;
+//import asavershin.car.dto.person.PersonFilter;
 //import com.querydsl.jpa.JPAExpressions;
 //import com.querydsl.jpa.impl.JPAQuery;
 //import jakarta.persistence.EntityManager;
