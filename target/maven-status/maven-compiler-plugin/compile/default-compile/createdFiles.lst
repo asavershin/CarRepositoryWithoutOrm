@@ -19,6 +19,7 @@ asavershin/car/repositories/CarRepository.class
 asavershin/car/mappers/resultsetmapping/PersonRowMapper.class
 asavershin/car/repositories/impl/AutoserviceRepositoryIml.class
 asavershin/car/repositories/PersonRepository.class
+asavershin/car/dto/Page.class
 asavershin/car/dto/car/CarFilter.class
 asavershin/generated/package_/tables/Car$CarPath.class
 asavershin/car/dto/person/ResponsePerson.class
@@ -26,11 +27,12 @@ asavershin/generated/package_/tables/Person.class
 asavershin/car/entities/CarEntity$CarEntityBuilder.class
 asavershin/generated/package_/tables/Person$PersonPath.class
 asavershin/generated/package_/tables/records/CarRecord.class
-asavershin/car/mappers/resultsetmapping/CarRowMapper.class
 asavershin/generated/package_/tables/Autoservice$AutoservicePath.class
 asavershin/car/handlers/localexceptions/EntityNotFoundException.class
 asavershin/car/handlers/localexceptions/DuplicateEvpException.class
+asavershin/car/services/CarService.class
 asavershin/car/validation/validators/CorrectModelValidator.class
+asavershin/car/controllers/CarController.class
 asavershin/car/controllers/PersonController.class
 asavershin/car/CarApplication.class
 asavershin/car/entities/CarEntity.class
@@ -40,15 +42,18 @@ asavershin/car/repositories/AutoserviceRepository.class
 asavershin/generated/package_/Public.class
 asavershin/car/mappers/CarMapperWithoutOwnerImpl.class
 asavershin/car/mappers/CarMapper.class
+asavershin/car/mappers/resultsetmapping/CarWithPersonAndAutoserviceRowMapper.class
 asavershin/generated/package_/tables/Car.class
+asavershin/car/controllers/AutoserviceController.class
 asavershin/car/repositories/JooqFilterRepository.class
-asavershin/car/dto/PageResponse.class
 asavershin/car/repositories/CrudRepository.class
 asavershin/car/repositories/impl/CarRepositoryIml.class
+asavershin/car/repositories/filters/CarFilter.class
 asavershin/car/mappers/resultsetmapping/AutoserviceRowMapper.class
 asavershin/car/validation/constraints/LocalDateTimeFormat.class
 asavershin/car/dto/autoservice/RequestAutoservice.class
 asavershin/car/services/PersonService.class
+asavershin/car/entities/PersonEntity$PersonEntityBuilder.class
 asavershin/car/mappers/CarMapperImpl.class
 asavershin/generated/package_/tables/Autoservice.class
 asavershin/car/entities/PersonEntity.class
@@ -63,3 +68,4 @@ asavershin/car/validation/constraints/CorrectModel.class
 asavershin/car/entities/AutoserviceEntity$AutoserviceEntityBuilder.class
 asavershin/car/repositories/impl/PersonRepositoryIml.class
 asavershin/car/dto/person/RequestPersonWithCars.class
+asavershin/car/services/AutoserviceService.class

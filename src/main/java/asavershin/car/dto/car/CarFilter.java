@@ -6,12 +6,15 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.jooq.Condition;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Objects.nonNull;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
+import static org.jooq.impl.DSL.field;
+import static org.jooq.impl.DSL.noCondition;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -23,23 +26,20 @@ public class CarFilter extends PageDto {
     private String country;
     @Size(max = 20,message = "Слишком длинное название цвета")
     private String color;
-//    public Predicate toPredicate() {
-//        var carFilter = QCar.car;
-//        List<Predicate> predicates = new ArrayList<>();
-//
-//        if (nonNull(age)) {
-//            predicates.add(carFilter.owner.age.gt(age));
-//        }
-//
-//        if (isNotBlank(color)) {
-//            predicates.add(carFilter.color.eq(color));
-//        }
-//
-//        if (isNotBlank(country)) {
-//            predicates.add(carFilter.autoservice.country.eq(country));
-//        }
-//
-//
-//        return ExpressionUtils.allOf(predicates);
-//    }
+    public Condition toCondition() {
+        List<Condition> conditions = new ArrayList<>();
+
+        if (nonNull(age)) {
+            conditions.add(field("person_age").ge(age));
+        }
+        if (isNotBlank(country)) {
+            conditions.add(field("autoservice_country").eq(country));
+        }
+        if (isNotBlank(color)) {
+            conditions.add(field("car_color").eq(color));
+        }
+
+        return conditions.stream()
+                .reduce(noCondition(), Condition::and);
+    }
 }

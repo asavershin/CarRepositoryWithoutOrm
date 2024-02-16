@@ -10,5 +10,5 @@ import org.mapstruct.Mapping;
 public interface AutoserviceMapper {
     ResponseAutoservice autoserviceToResponseAutoservice(AutoserviceEntity autoservice);
     AutoserviceEntity requestAutoserviceToAutoservice(RequestAutoservice request);
-    AutoserviceEntity requestAutoserviceToAutoservice(Long id, RequestAutoservice requestAutoservice);
+    AutoserviceEntity requestAutoserviceToAutoservice(Long autoserviceId, RequestAutoservice requestAutoservice);
 }

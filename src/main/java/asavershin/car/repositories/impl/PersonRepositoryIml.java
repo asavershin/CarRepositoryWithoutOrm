@@ -6,7 +6,7 @@ import asavershin.car.entities.CarEntity;
 import asavershin.car.entities.PersonEntity;
 import asavershin.car.handlers.localexceptions.EntityNotFoundException;
 import asavershin.car.mappers.resultsetmapping.AutoserviceRowMapper;
-import asavershin.car.mappers.resultsetmapping.CarRowMapper;
+import asavershin.car.mappers.resultsetmapping.CarWithPersonAndAutoserviceRowMapper;
 import asavershin.car.mappers.resultsetmapping.PersonRowMapper;
 import asavershin.car.repositories.PersonRepository;
 import asavershin.generated.package_.tables.Autoservice;
@@ -29,7 +29,7 @@ public class PersonRepositoryIml implements PersonRepository {
 
     private final PersonRowMapper personRowMapper;
     private final AutoserviceRowMapper autoserviceRowMapper;
-    private final CarRowMapper carRowMapper;
+    private final CarWithPersonAndAutoserviceRowMapper carRowMapper;
     private final DSLContext dslContext;
 
     private final JdbcTemplate jdbcTemplate;
@@ -71,6 +71,8 @@ public class PersonRepositoryIml implements PersonRepository {
                     DELETE FROM person
                     WHERE person_id = ?
                     """;
+
+    private String EXIST_BY_PERSON_ID = "SELECT COUNT(*) FROM person WHERE person_id = ?";
 
     @Override
     public PersonEntity insert(PersonEntity person) {
@@ -166,4 +168,9 @@ public class PersonRepositoryIml implements PersonRepository {
         return personList;
     }
 
+    @Override
+    public boolean existsById(Long id) {
+        Integer count = jdbcTemplate.queryForObject(EXIST_BY_PERSON_ID, Integer.class, id);
+        return count != null && count > 0;
+    }
 }

@@ -1,5 +1,6 @@
 package asavershin.car.mappers;
 
+import asavershin.car.dto.Page;
 import asavershin.car.dto.car.RequestCar;
 import asavershin.car.dto.person.RequestPersonWithCars;
 import asavershin.car.entities.CarEntity;
@@ -20,7 +21,7 @@ public interface CarMapper {
     @Mapping(target = "carReleaseDate", source = "carReleaseDate", qualifiedByName = "dateToString")
     ResponseCar carToResponseCar(CarEntity car);
 //
-//    PageResponse<ResponseCar> pageResponseWithResponseCars(Page<Car> page);
+    Page<ResponseCar> pageResponseWithResponseCars(Page<CarEntity> page);
 
     List<ResponseCar> listCarToListRC(List<CarEntity> cars);
 

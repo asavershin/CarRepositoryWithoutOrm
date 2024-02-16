@@ -3,6 +3,7 @@ package asavershin.car.repositories.impl;
 import asavershin.car.entities.AutoserviceEntity;
 import asavershin.car.entities.PersonEntity;
 import asavershin.car.handlers.localexceptions.EntityNotFoundException;
+import asavershin.car.mappers.resultsetmapping.AutoserviceRowMapper;
 import asavershin.car.repositories.AutoserviceRepository;
 import asavershin.generated.package_.tables.Autoservice;
 import asavershin.generated.package_.tables.Person;
@@ -19,7 +20,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AutoserviceRepositoryIml implements AutoserviceRepository {
 
-    private final RowMapper<AutoserviceEntity> autoserviceRowMapper;
+    private final AutoserviceRowMapper autoserviceRowMapper;
     private final JdbcTemplate jdbcTemplate;
     private final DSLContext dslContext;
 
@@ -97,7 +98,8 @@ public class AutoserviceRepositoryIml implements AutoserviceRepository {
 
     @Override
     public Optional<AutoserviceEntity> findById(Long id) {
-        return Optional.ofNullable(jdbcTemplate.queryForObject(FIND_BY_ID, autoserviceRowMapper, id));
+        var listAutoserice = jdbcTemplate.query(FIND_BY_ID, autoserviceRowMapper, id);
+        return Optional.ofNullable(listAutoserice.isEmpty()? null : listAutoserice.get(0));
     }
 
     @Override

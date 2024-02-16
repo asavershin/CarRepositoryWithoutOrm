@@ -2,6 +2,7 @@
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/repositories/DataSourceConfig.java
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/repositories/CustomPersonRepository.java
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/repositories/CarRepository.java
+/home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/repositories/filters/CarFilter.java
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/entities/Model.java
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/dto/autoservice/RequestAutoservice.java
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/validation/constraints/LocalDateTimeFormat.java
@@ -15,6 +16,7 @@
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/repositories/impl/CarRepositoryIml.java
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/controllers/PersonController.java
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/dto/car/ResponseCarWithoutOwner.java
+/home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/dto/Page.java
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/repositories/PersonRepository.java
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/dto/car/CarFilter.java
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/CarApplication.java
@@ -29,7 +31,6 @@
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/validation/constraints/CorrectModel.java
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/dto/person/ResponsePersonWithCars.java
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/dto/person/PersonFilter.java
-/home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/mappers/resultsetmapping/CarRowMapper.java
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/mappers/CarMapperWithoutOwner.java
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/repositories/AutoserviceRepository.java
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/entities/PersonEntity.java
@@ -55,7 +56,7 @@
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/repositories/AbstractJooqFilterRepository.java
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/target/generated-sources/jooq/asavershin/generated/package_/tables/Car.java
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/handlers/HandleErrorService.java
-/home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/dto/PageResponse.java
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/mappers/CarMapper.java
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/services/AutoserviceService.java
+/home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/src/main/java/asavershin/car/mappers/resultsetmapping/CarWithPersonAndAutoserviceRowMapper.java
 /home/asavershin/public/git/my-projects/CarRepositoryWithoutOrm/target/generated-sources/jooq/asavershin/generated/package_/tables/records/CarRecord.java

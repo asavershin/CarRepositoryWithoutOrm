@@ -1,6 +1,6 @@
 package asavershin.car.controllers;
 
-import asavershin.car.dto.PageResponse;
+import asavershin.car.dto.Page;
 import asavershin.car.dto.car.CarFilter;
 import asavershin.car.dto.car.RequestCar;
 import asavershin.car.dto.car.RequestCarForUpdate;
@@ -18,6 +18,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -65,7 +66,7 @@ public class CarController {
             @ApiResponse(responseCode = "200", description = "Ok", content = {@Content()}),
             @ApiResponse(responseCode = "404", description = "Машина с id carId не найдена", content = {@Content()})
     })
-    public void deleteCar(@PathVariable Long carId){
+    public void deleteCar(@PathVariable Long carId) throws EntityNotFoundException {
         carService.deleteCar(carId);
     }
 
@@ -77,7 +78,7 @@ public class CarController {
                     @Schema(implementation = ResponseCar.class)) }),
             @ApiResponse(responseCode = "404", description = "Машина с id carId не найдена", content = {@Content()})
     })
-    public ResponseCar getCar(@PathVariable Long carId){
+    public ResponseCar getCar(@PathVariable Long carId) throws EntityNotFoundException {
         return carMapper.carToResponseCar(carService.getCarById(carId));
     }
 
@@ -88,10 +89,10 @@ public class CarController {
             @ApiResponse(responseCode = "404", description = "Машина с id carId не найдена", content = {@Content()})
     })
     @GetMapping("/filter")
-    public PageResponse<ResponseCar> filterCars(@Valid CarFilter filter) {
+    public Page<ResponseCar> filterCars(@Valid CarFilter filter) throws SQLException {
         return carMapper.pageResponseWithResponseCars(
                 carService.filterCarsByAgeCountryAndColor(
-                        filter.getPageNumber(), filter.getPageSize(), filter.toPredicate()));
+                        filter.getPageNumber(), filter.getPageSize(), filter.toCondition()));
     }
     @Operation(description = "Получение всех машин определенного человека")
     @ApiResponses(value = {
@@ -102,7 +103,7 @@ public class CarController {
             @ApiResponse(responseCode = "404", description = "Человек с id personId не найден", content = {@Content()})
     })
     @GetMapping("/bypersonid/{personId}")
-    public List<ResponseCar> findCarsByPersonId(@PathVariable Long personId) {
+    public List<ResponseCar> findCarsByPersonId(@PathVariable Long personId) throws EntityNotFoundException {
         return carService.findCarsByPersonId(personId).stream()
                 .map(carMapper::carToResponseCar)
                 .collect(Collectors.toList());
@@ -116,7 +117,7 @@ public class CarController {
             @ApiResponse(responseCode = "404", description = "Машина с evp не найдена", content = {@Content()})
     })
     @GetMapping("/byevp/{evp}")
-    public ResponseCar findCarByEvp(@PathVariable Long evp){
+    public ResponseCar findCarByEvp(@PathVariable Long evp) throws EntityNotFoundException {
         return carMapper.carToResponseCar(carService.findCarByEvp(evp));
     }
 }

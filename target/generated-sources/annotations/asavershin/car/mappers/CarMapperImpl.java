@@ -1,5 +1,6 @@
 package asavershin.car.mappers;
 
+import asavershin.car.dto.Page;
 import asavershin.car.dto.autoservice.ResponseAutoservice;
 import asavershin.car.dto.car.RequestCar;
 import asavershin.car.dto.car.ResponseCar;
@@ -18,7 +19,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-02-15T14:59:34+0300",
+    date = "2024-02-16T18:04:23+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21 (Oracle Corporation)"
 )
 @Component
@@ -67,6 +68,23 @@ public class CarMapperImpl implements CarMapper {
     }
 
     @Override
+    public Page<ResponseCar> pageResponseWithResponseCars(Page<CarEntity> page) {
+        if ( page == null ) {
+            return null;
+        }
+
+        Page<ResponseCar> page1 = new Page<ResponseCar>();
+
+        page1.setTotalPages( page.getTotalPages() );
+        page1.setTotalElements( page.getTotalElements() );
+        page1.setNumber( page.getNumber() );
+        page1.setSize( page.getSize() );
+        page1.setContent( listCarToListRC( page.getContent() ) );
+
+        return page1;
+    }
+
+    @Override
     public List<ResponseCar> listCarToListRC(List<CarEntity> cars) {
         if ( cars == null ) {
             return null;
@@ -109,13 +127,13 @@ public class CarMapperImpl implements CarMapper {
             return null;
         }
 
-        PersonEntity personEntity = new PersonEntity();
+        PersonEntity.PersonEntityBuilder personEntity = PersonEntity.builder();
 
-        personEntity.setPersonName( request.getPersonName() );
-        personEntity.setPersonAge( request.getPersonAge() );
-        personEntity.setPersonCars( requestCarListToCarEntityList( request.getPersonCars() ) );
+        personEntity.personName( request.getPersonName() );
+        personEntity.personAge( request.getPersonAge() );
+        personEntity.personCars( requestCarListToCarEntityList( request.getPersonCars() ) );
 
-        return personEntity;
+        return personEntity.build();
     }
 
     protected List<CarEntity> requestCarListToCarEntityList(List<RequestCar> list) {
