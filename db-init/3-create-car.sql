@@ -12,16 +12,3 @@ CREATE TABLE car (
                      CONSTRAINT fk_car_autoservice FOREIGN KEY (autoservice_id) REFERENCES autoservice(autoservice_id) ON DELETE SET NULL
 );
 
-CREATE OR REPLACE FUNCTION update_last_updated_at()
-RETURNS TRIGGER AS '
-BEGIN
-    NEW.car_last_updated_at = CURRENT_TIMESTAMP;
-    RETURN NEW;
-END;'
-LANGUAGE plpgsql;
-
-
-CREATE TRIGGER car_last_updated_trigger
-    BEFORE UPDATE ON car
-    FOR EACH ROW
-    EXECUTE FUNCTION update_last_updated_at();

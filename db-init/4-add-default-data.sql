@@ -1,3 +1,17 @@
+CREATE OR REPLACE FUNCTION update_last_updated_at()
+    RETURNS TRIGGER AS '
+    BEGIN
+        NEW.car_last_updated_at = CURRENT_TIMESTAMP;
+        RETURN NEW;
+    END;'
+    LANGUAGE plpgsql;
+
+
+CREATE TRIGGER car_last_updated_trigger
+    BEFORE UPDATE ON car
+    FOR EACH ROW
+EXECUTE FUNCTION update_last_updated_at();
+
 INSERT INTO person (person_name, person_age)
 VALUES
     ('Sophia', 26),

@@ -195,15 +195,15 @@ public class CarRepositoryIml implements CarRepository {
                         Car.CAR.CAR_RELEASE_DATE,
                         Car.CAR.CAR_LAST_UPDATED_AT)
                 .select(Autoservice.AUTOSERVICE.fields())
-                .from(Person.PERSON)
-                .leftJoin(Car.CAR).using(Person.PERSON.PERSON_ID)
+                .from(Car.CAR)
+                .leftJoin(Person.PERSON).using(Person.PERSON.PERSON_ID)
                 .leftJoin(Autoservice.AUTOSERVICE).using(Autoservice.AUTOSERVICE.AUTOSERVICE_ID)
                 .where(condition)
                 .orderBy(groupByFields);
 
         var countSelect = dslContext.selectCount()
-                .from(Person.PERSON)
-                .leftJoin(Car.CAR).using(Person.PERSON.PERSON_ID)
+                .from(Car.CAR)
+                .leftJoin(Person.PERSON).using(Person.PERSON.PERSON_ID)
                 .leftJoin(Autoservice.AUTOSERVICE).using(Autoservice.AUTOSERVICE.AUTOSERVICE_ID)
                 .where(condition);
 

@@ -54,9 +54,11 @@
             <version>${jooq.version}</version>
         </dependency>
 
-
-
-
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq-meta-extensions</artifactId>
+            <version>${jooq.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.mapstruct</groupId>
@@ -102,11 +104,6 @@
             <version>${logback.version}</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-data-jpa</artifactId>-->
-<!--            <version>${spring.boot.version}</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
@@ -196,20 +193,37 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <!-- Конфигурация для подключения к базе данных PostgreSQL -->
-                            <jdbc>
-                                <driver>org.postgresql.Driver</driver>
-                                <url>jdbc:postgresql://localhost:5440/postgres</url>
-                                <user>postgres</user>
-                                <password>postgres</password>
-                            </jdbc>
-                            <!-- Конфигурация для генерации кода -->
                             <generator>
-                                <name>org.jooq.codegen.JavaGenerator</name>
                                 <database>
-                                    <name>org.jooq.meta.postgres.PostgresDatabase</name>
-                                    <includes>.*</includes>
-                                    <inputSchema>public</inputSchema>
+                                    <name>org.jooq.meta.extensions.ddl.DDLDatabase</name>
+                                    <properties>
+                                        <!-- Specify the location of your SQL script.
+                                        You may use ant-style file matching, e.g. /path/**/to/*.sql
+                                        Where:
+                                        - ** matches any directory subtree
+                                        - * matches any number of characters in a directory / file name
+                                        - ? matches a single character in a directory / file name -->
+                                        <property>
+                                            <key>scripts</key>
+                                            <value>db-init/*create*.sql</value>
+                                        </property>
+                                        <property>
+                                            <key>sort</key>
+                                            <value>semantic</value>
+                                        </property>
+                                        <property>
+                                            <key>unqualifiedSchema</key>
+                                            <value>none</value>
+                                        </property>
+                                        <!-- The default name case for unquoted objects:
+                                        - as_is: unquoted object names are kept unquoted
+                                        - upper: unquoted object names are turned into upper case (most databases)
+                                        - lower: unquoted object names are turned into lower case (e.g. PostgreSQL) -->
+                                        <property>
+                                            <key>defaultNameCase</key>
+                                            <value>lower</value>
+                                        </property>
+                                    </properties>
                                 </database>
                                 <target>
                                     <packageName>asavershin.generated.package</packageName>
